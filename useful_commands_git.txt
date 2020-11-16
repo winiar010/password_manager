@@ -91,6 +91,12 @@ git merge <branch_name>
 git clean -n -d             //delete untracked files from working tree
 git clean -f -d 
 
+git push origin branch1         //push your branch 
+git checkout master             
+git pull origin master
+git merge branch1
+push origin master
+
 #commit
 git commit -m "Initial commit"      //Do commit
 
