@@ -1,0 +1,207 @@
+#USEFUL COMMANDS GIT Przypominajka Mikolaj @2020
+
+#config
+git config –global user.name "[name]"
+git config –global user.email "[email address]"
+git init [repository_name]
+git config
+git log
+
+#status
+git status      //Check the status of working directory and staging area
+git diff        //Show changes between HEAD and working directory
+git log --oneline       //Show the list of commits in one line format
+git log
+git log — all — grep=’day of week’     //Search commits that contain a log message
+git log -S 'LoginViewController'        //Show commits that make add or remove a certain string
+
+#Tag
+git tag     //List all tags
+git tag -a 1.4 -m "my version 1.4"     //Tag a commit
+
+git push --delete origin tagname        //Delete remote tags
+git push origin tagname
+
+git push origin tagname     //Push tag to remote
+
+git tag new old           //Rename tag
+git tag -d olf
+git push origin refs/tags/old
+git push --tags
+
+git push origin refs/tags/<tagname>        //Move tag from one commit to another commit
+git tag -fa tagname
+git push origin master --tags
+
+#Remote
+git remote      //List all remote
+
+git remote rename old new       //rename remote
+
+git remote prune origin         //removestale remote tracking branches
+
+#Repository 
+git clone <https://name-of-the-repository-link>         //cloning git repository
+git add . /git add -A
+git add <file>
+git pull <branch_name>
+
+#branch
+git branch      //List all branches
+
+git checkout branch_name        //Creating new branch
+
+git checkout -b branch_name     //Create the branch on your local machine and switch into this branch
+
+git branch branch_name sha1_of_commit       //create branch from commit
+
+git push -u origin <branch_name>        //if your branch is new
+
+git push origin branch_name         //push the branch to remote
+
+git branch -m <new_name>            //renaming current branch
+
+git branch -m old new       //rename other branch
+
+git push –all origin        //push all branches to your remote repository  
+
+git branch -m old new               //Rename branch locally    
+git push origin old                 //Delete the old branch    
+git push --set-upstream origin new   //Push the new branch, set local branch to track the new remote
+
+git branch -d local_branch          //Delete a branch
+git push origin remote_branch
+
+git diff –staged            //shows diffrence between the files in the staging area
+
+git diff branch_1 branch_2         //find the diff between two branches
+
+git diff branch1:file branch2:file      //comparing files between branches
+
+
+git checkout master             //Get, merge and push branch
+git pull origin master
+git merge branch_name
+git push origin master
+
+git checkout master             
+git fetch
+git merge <branch_name>
+
+git clean -n -d             //delete untracked files from working tree
+git clean -f -d 
+
+#commit
+git commit -m "Initial commit"      //Do commit
+
+git reset --hard HEAD~1       //Undo last commits
+
+git show commit_name        //shows the metadata and content changes of the specified commit
+
+git rm <file-A> <file-B> <file-C>           //Remove file from commit
+git commit -m "removing files"
+git push
+
+git reset --soft HEAD^              //How to uncommit (undo) the last commit
+git reset --hard HEAD^
+
+git rebase -i HEAD~5        //Squash last n commits into one commit
+git reset --soft HEAD~5
+git add .
+git commit -m "Update"
+git push -f origin master
+
+git branch newbranch        //Move last commits into new branch
+git reset --hard HEAD~3     //Go back 3 commits. You *will* lose uncommitted work
+git checkout newbranch
+
+#Cherry Pick
+git cherry-pick hash_commit_A hash_commit_B     //Add some commits to the top of the current branch
+
+#Reflog
+git reflog             //show reflog
+
+git reset --hard 0254ea7        //Get commit
+git cherry-pick 12944d8
+
+#Revert
+git revert HEAD         //Revert the previous commit
+git commit
+
+git revert --no-commit HEAD~3..         //Revert the changes from previous 3 commits without making commit
+
+git revert -m 1 <merge-commit-id>          //Revert merge by commit
+
+#Amend
+git commit --amend      //Amend/modify previous commit
+git commit --amend --no-edit
+git commit --amend -m "New commit message"
+
+git commit --amend -m "New commit message"         //changing git commit message after push
+git push --force <repository> <branch>
+
+#Checkout
+git checkout tagname        //Checkout a tag
+git checkout -b newbranchname tagname
+
+git checkout destination_branch         //Checkout a branch
+
+git checkout -m master          //Use -m if there is merge conflict
+
+git checkout commit_hash        //Checkout a commit
+git checkout -b newbranchname HEAD~4
+git checkout -b newbranchname commit_hash
+git checkout commit_hash file
+
+git checkout c5f567 -- Relative/Path/To/File
+
+#Stash
+git stash save "stash name"         //temporarily stores all the modified tracked files
+git stash
+
+git stash list          //lists all stashed changesets
+
+git stash pop           //restores the most recently stashed files
+
+git stash pop           //apply a stash
+git stash apply
+git stash apply stash@{2}
+
+git stash drop          //discards the most recently stashed changeset
+
+#Rebase 
+git rebase master           //Rebase current branch onto master
+
+git rebase --continue       //continue rebase
+
+git rebase --abort          //abort rebase
+
+#.gitignore
+git rm -r --cached .            //Untrack files that have just been declared in .gitignore 
+git add .
+git commit -am "Remove ignored files"
+
+#Index
+git clean             //Remove untracked files
+
+git reset file          //Remove file from index 
+
+git reset               //Reset the index to match the most recent commit
+
+git reset --hard        //Reset the index and the working directory to match the most recent commit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
