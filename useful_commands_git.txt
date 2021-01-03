@@ -95,7 +95,7 @@ git push origin branch1         //push your branch
 git checkout master             
 git pull origin master
 git merge branch1
-push origin master
+git push origin master
 
 #commit
 git commit -m "Initial commit"      //Do commit
