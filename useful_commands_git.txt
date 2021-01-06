@@ -1,5 +1,19 @@
 #USEFUL COMMANDS GIT Przypominajka Mikolaj @2020
 
+# Typowe flow z utworzeniem nowego brancha
+*git clone https://..
+git pull
+git checkout -b <branch_name>
+git add .
+git push <branch_name>
+
+# Typowe flow z utworzeniem nowego commita
+*git clone https://..
+git pull
+git add .
+git commit -m "Initial commit"  
+git push <branch_name>
+
 #config
 git config –global user.name "[name]"
 git config –global user.email "[email address]"
@@ -61,12 +75,16 @@ git push origin branch_name         //push the branch to remote
 
 git branch -m <new_name>            //renaming current branch
 
+git branch -d localBranchName       //delete branch locally 
+
+git push origin --delete remoteBranchName   //delete remote branch
+
 git branch -m old new       //rename other branch
 
 git push –all origin        //push all branches to your remote repository  
 
 git branch -m old new               //Rename branch locally    
-git push origin old                 //Delete the old branch    
+git branch -d origin old                 //Delete the old branch    
 git push --set-upstream origin new   //Push the new branch, set local branch to track the new remote
 
 git branch -d local_branch          //Delete a branch
@@ -195,19 +213,4 @@ git reset file          //Remove file from index
 git reset               //Reset the index to match the most recent commit
 
 git reset --hard        //Reset the index and the working directory to match the most recent commit
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
