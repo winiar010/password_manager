@@ -5,13 +5,13 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 import os
 
-# Utworzenie klucza kodującego base64
-# def generate_key():
-#     key = Fernet.generate_key()
-#     with open("secret.key", "wb") as key_file:
-#         key_file.write(key)
+#Utworzenie klucza kodującego base64
+def generate_key():
+    key = Fernet.generate_key()
+    with open("secret.key", "wb") as key_file:
+        key_file.write(key)
 
-# generate_key()
+generate_key()
 
 # file = open('secret.key', 'rb')  # Open the file as wb to read bytes
 # key = file.read()  # The key will be type bytes
@@ -48,27 +48,27 @@ import os
 #     file.close()
 # make_password()
 
-password_provided = "Maslo" 
-password = password_provided.encode()  # konwert z typu bytes do utf-8
-salt = os.urandom(16)  
-kdf = PBKDF2HMAC(
-    algorithm=hashes.SHA256(),
-    length=32,
-    salt=salt,
-    iterations=100000,
-    backend=default_backend()
-)
-key = base64.urlsafe_b64encode(kdf.derive(password))  # Can only use kdf once
-print(key)
+# password_provided = "Maslo" 
+# password = password_provided.encode()  # konwert z typu bytes do utf-8
+# salt = os.urandom(16)  
+# kdf = PBKDF2HMAC(
+#     algorithm=hashes.SHA256(),
+#     length=32,
+#     salt=salt,
+#     iterations=100000,
+#     backend=default_backend()
+# )
+# key = base64.urlsafe_b64encode(kdf.derive(password))  # Can only use kdf once
+# print(key)
 
-f = Fernet(key)
-simple_passw = b'Edukacja'
-simple_passw = f.encrypt(simple_passw)
-print(simple_passw)
-print('-'*40)
+# f = Fernet(key)
+# simple_passw = b'Edukacja'
+# simple_passw = f.encrypt(simple_passw)
+# print(simple_passw)
+# print('-'*40)
 
-passwd = f.decrypt(simple_passw)
-print(passwd)
+# passwd = f.decrypt(simple_passw)
+# print(passwd)
 
 
 
