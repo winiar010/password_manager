@@ -6,77 +6,61 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 import os
 
 #Utworzenie klucza kodującego base64
-def generate_key():
-    key = Fernet.generate_key()
-    with open("secret.key", "wb") as key_file:
-        key_file.write(key)
+# def create_key():
+#     password_provided = input("Podaj klucz kodujący:\n> ") 
+#     password = password_provided.encode()  # konwert z typu bytes do utf-8
+#     salt = os.urandom(16)  
+#     kdf = PBKDF2HMAC(
+#         algorithm=hashes.SHA256(),
+#         length=32,
+#         salt=salt,
+#         iterations=100000,
+#         backend=default_backend()
+#     )
+#     key = base64.urlsafe_b64encode(kdf.derive(password))  # Can only use kdf once
+#     with open("secret.key", "wb") as key_file:
+#         key_file.write(key)
 
-generate_key()
+# create_key()
 
-# file = open('secret.key', 'rb')  # Open the file as wb to read bytes
-# key = file.read()  # The key will be type bytes
-# key.decode()
-# print(key)
-# file.close()
+def load_key():
+    return open("secret.key", "rb").read()
 
-# password_provided = input("Podaj hasło kodujące:\n> ") 
-# password = password_provided.encode()  # konwert z typu bytes do utf-8
-# salt = os.urandom(16)  
-# kdf = PBKDF2HMAC(
-#     algorithm=hashes.SHA256(),
-#     length=32,
-#     salt=salt,
-#     iterations=100000,
-#     backend=default_backend()
-# )
-# key = base64.urlsafe_b64encode(kdf.derive(password))  # Can only use kdf once
-# print(key)
-
-# def make_password():
-#     file = open('secret.key', 'rb')
-#     key = file.read()
-#     print(key)
-#     f = Fernet(key)
-#     simple_passw = b'Maslo'
-#     simple_passwd = f.encrypt(simple_passw)
+def encode_password():
+    key = load_key()
+    f = Fernet(key)
+    print('Podaj hasło, które chcesz zakodować: ')
+    simple_passwd = input("> ")
+    simple_passwd = bytes(simple_passwd, encoding="utf-8")
+    passw = f.encrypt(simple_passwd)
+    return passw
     
-#     print(simple_passw)
-#     print('-'*40)
+# encode_password()
 
-#     passwd = f.decrypt(simple_passwd)
-#     print(passwd)
-#     file.close()
-# make_password()
+def decode_password(passw_to_decode):
+    key = load_key()
+    f = Fernet(key)
+    passw_to_decode = bytes(passw_to_decode, encoding="utf-8")
+    decoded_passwd = f.decrypt(passw_to_decode)
+    return decoded_passwd
 
-# password_provided = "Maslo" 
-# password = password_provided.encode()  # konwert z typu bytes do utf-8
-# salt = os.urandom(16)  
-# kdf = PBKDF2HMAC(
-#     algorithm=hashes.SHA256(),
-#     length=32,
-#     salt=salt,
-#     iterations=100000,
-#     backend=default_backend()
-# )
-# key = base64.urlsafe_b64encode(kdf.derive(password))  # Can only use kdf once
-# print(key)
-
-# f = Fernet(key)
-# simple_passw = b'Edukacja'
-# simple_passw = f.encrypt(simple_passw)
-# print(simple_passw)
-# print('-'*40)
-
-# passwd = f.decrypt(simple_passw)
-# print(passwd)
+# decode_password()
 
 
+# Create table
+# conn = sqlite3.connect('admins.db')
+# c = conn.cursor()
+# c.execute("CREATE TABLE admins (
+# 	"username"	VARCHAR,
+# 	"password"	VARCHAR
+# )")
+# conn.close()
 
-
-
-
-
-
-
-
-
+# conn = sqlite3.connect('accounts.db')
+# c = conn.cursor()
+# username = 'root'
+# passw = encode_password()
+# passw = str(passw, 'utf-8')
+# c.execute("INSERT INTO admins (username, password) VALUES (?, ?)", (username, passw))
+# conn.commit()
+# conn.close()
